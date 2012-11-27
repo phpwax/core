@@ -10,11 +10,10 @@
     ],
     "require": {
       "php": ">=5.4.0",
-      "symfony/routing":  "2.2.x-dev",
-      "symfony/config":   "2.2.x-dev",
     },
     
     "require-dev": {
+      "symfony/routing":  "2.2.x-dev",
       "symfony/config":   "2.2.x-dev",
     },
     
