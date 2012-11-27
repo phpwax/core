@@ -13,8 +13,9 @@
     },
     
     "require-dev": {
+      "symfony/http-foundation":  "2.2.x-dev",
       "symfony/routing":  "2.2.x-dev",
-      "symfony/config":   "2.2.x-dev",
+      "symfony/config":   "2.2.x-dev"
     },
     
     "autoload": {
