@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\Routing;
+use Symfony\Component\Routing\Loader\FileLoader;
 use Symfony\Component\Routing\Loader\PhpFileLoader;
   
 class Application {
