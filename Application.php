@@ -56,6 +56,11 @@ class Application {
   */
   public function boot() {
     if (true === $this->booted) return;
+    
+    // Load Routes
+    $loader = new PhpFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
+    $routeCollection = $loader->load('routes.php');
+    $this->router = $routeCollection;
 
     // init bundles
     $this->initialize_bundles();
@@ -139,7 +144,7 @@ class Application {
   public function register_bundles(){
     return [];
   }
-
+  
   
   /**
   * {@inheritdoc}
@@ -152,13 +157,11 @@ class Application {
       $request = Request::createFromGlobals();
       $this->request = $request;
       
-      // Load Routes
-      $loader = new PhpFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
-      $routeCollection = $loader->load('routes.php');
+      
             
       $context = new Routing\RequestContext();
       $context->fromRequest($request);
-      $matcher = new Routing\Matcher\UrlMatcher($routeCollection, $context);
+      $matcher = new Routing\Matcher\UrlMatcher($this->router, $context);
       $attributes = $matcher->match($request->getPathInfo());
       print_r($attributes); exit;
      } catch (\Exception $e) {
