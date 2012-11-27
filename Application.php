@@ -137,7 +137,7 @@ class Application {
 
   public function handler() {
     if(isset($this->handler)) return $this->handler;
-    else return $this;
+    return false;
   }
   
   /**
@@ -147,7 +147,8 @@ class Application {
   */
   public function handle($request) {
     if (false === $this->booted) $this->boot();
-    return $this->handler()->handle($request);
+    if(is_callable(array($this->handler(), "handle"))) return call_user_func($this->handler->handle($request));
+    return;
   }
   
 
