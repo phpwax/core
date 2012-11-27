@@ -13,6 +13,11 @@
       "symfony/routing":  "2.2.x-dev",
       "symfony/config":   "2.2.x-dev",
     },
+    
+    "require-dev": {
+      "symfony/config":   "2.2.x-dev",
+    },
+    
     "autoload": {
         "psr-0": { "Wax\\Core": "" }
     },
