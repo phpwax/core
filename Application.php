@@ -150,6 +150,7 @@ class Application {
     if (false === $this->booted) $this->boot();
     try {
       $request = Request::createFromGlobals();
+      $this->request = 
       
       // Load Routes
       $loader = new PhpFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
@@ -158,7 +159,7 @@ class Application {
       $context = new Routing\RequestContext();
       $context->fromRequest($request);
       $matcher = new Routing\Matcher\UrlMatcher($routeCollection, $context);
-
+      var_dump($request->getPathInfo()); exit;
       print_r($matcher->match($request->getPathInfo()), EXTR_SKIP);
       
      } catch (Exception $e) {
