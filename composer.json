@@ -9,7 +9,9 @@
         {"name": "Ross Riley","email": "ross@oneblackbear.com"}
     ],
     "require": {
-        "php": ">=5.4.0"
+      "php": ">=5.4.0",
+      "symfony/http-kernel": "2.2.x-dev",
+      "symfony/routing": "2.2.x-dev"
     },
     "autoload": {
         "psr-0": { "Wax\\Core": "" }

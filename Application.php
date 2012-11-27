@@ -1,6 +1,11 @@
 <?php
 namespace Wax\Core;
-
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\RequestContext;
+use Symfony\Component\HttpKernel\HttpKernel;
+use Symfony\Component\Routing;
+use Symfony\Component\Routing\Loader\PhpFileLoader;
   
 class Application {
 
@@ -16,7 +21,7 @@ class Application {
   protected $startTime;
   protected $classes;
   protected $errorReportingLevel;
-
+  
 
   public function __construct($environment, $debug) {
     $this->environment = $environment;
@@ -24,7 +29,6 @@ class Application {
     $this->booted = false;
     $this->rootdir = $this->get_root_dir();
     $this->name = $this->get_name();
-    $this->classes = array();
     if($this->debug) $this->startTime = microtime(true);
   }
 
@@ -133,37 +137,41 @@ class Application {
   public function register_bundles(){
     return [];
   }
-  
 
-  public function handler() {
-    if(isset($this->handler)) return $this->handler;
-    return false;
-  }
   
   /**
   * {@inheritdoc}
   *
   * @api
   */
-  public function handle($request) {
+  public function handle() {
     if (false === $this->booted) $this->boot();
-    if(is_callable(array($this->handler(), "handle"))) return call_user_func($this->handler->handle($request));
-    return;
-  }
-  
+    try {
+      $request = Request::createFromGlobals();
+      
+      // Load Routes
+      $loader = new PhpFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
+      $routeCollection = $loader->load('routes.php');
+      $routes = $routeCollection->all();
+      
+      print_r($routes);
+      
+      $context = new Routing\RequestContext();
+      $context->fromRequest($request);
+      $matcher = new Routing\Matcher\UrlMatcher($routes, $context);
 
+      print_r($matcher->match($request->getPathInfo()), EXTR_SKIP);
+      exit;
+      
+     } catch (Exception $e) {
+       $response = new Response('A fatal error occurred: ' . $e->getMessage(), 500);
+     }
+   
+     return $response;
+   }
+    
+    
 
-  
-  /**
-  * {@inheritdoc}
-  *
-  * @api
-  */
-  public function terminate($request, $response) {
-    if(false === $this->booted) return;
-    $this->handler()->terminate($request, $response);
-  }
-  
 
 }
 
