@@ -137,6 +137,7 @@ class Application {
 
   public function handler() {
     if(isset($this->handler)) return $this->handler;
+    else return $this;
   }
   
   /**
