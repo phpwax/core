@@ -121,6 +121,19 @@ class Application {
 
   }
   
+  /**
+  * {@inheritdoc}
+  *
+  * @api
+  */
+  public function get_bundles() {
+      return $this->bundles;
+  }
+  
+  public function register_bundles(){
+    return [];
+  }
+  
 
   public function handler() {
     if(isset($this->handler)) return $this->handler;
