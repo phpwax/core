@@ -160,9 +160,8 @@ class Application {
       $context->fromRequest($request);
       $matcher = new Routing\Matcher\UrlMatcher($routeCollection, $context);
       $attributes = $matcher->match($request->getPathInfo());
-      print_r($attributes); exit;
       
-     } catch (Exception $e) {
+     } catch (\Exception $e) {
        $response = new Response('A fatal error occurred: ' . $e->getMessage(), 500);
      }
    
