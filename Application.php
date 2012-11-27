@@ -154,15 +154,12 @@ class Application {
       // Load Routes
       $loader = new PhpFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
       $routeCollection = $loader->load('routes.php');
-      
-      print_r($routes);
-      
+            
       $context = new Routing\RequestContext();
       $context->fromRequest($request);
       $matcher = new Routing\Matcher\UrlMatcher($routeCollection, $context);
 
       print_r($matcher->match($request->getPathInfo()), EXTR_SKIP);
-      exit;
       
      } catch (Exception $e) {
        $response = new Response('A fatal error occurred: ' . $e->getMessage(), 500);
