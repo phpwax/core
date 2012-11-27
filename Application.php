@@ -159,7 +159,7 @@ class Application {
       $context = new Routing\RequestContext();
       $context->fromRequest($request);
       $matcher = new Routing\Matcher\UrlMatcher($routeCollection, $context);
-      $attributes = $matcher->match($request->getPathInfo(), EXTR_SKIP);
+      $attributes = $matcher->match($request->getPathInfo());
       print_r($attributes); exit;
       
      } catch (Exception $e) {
