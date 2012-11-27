@@ -6,7 +6,6 @@ use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\Routing;
 use Symfony\Component\Routing\Loader\PhpFileLoader;
-use Symfony\Component\Routing\Loader\FileLoader;
   
 class Application {
 
