@@ -60,7 +60,11 @@ class Application {
     
     // Setup Routes
     $this->router = new RouteCollection;
+    $loader = new PhpFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
+    $this->router->addCollection($loader->load('routes.php'));
     
+    $loader = new YAMLFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
+    $this->router->addCollection($loader->load('routes.yml'));
 
 
     // init bundles
