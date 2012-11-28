@@ -16,9 +16,8 @@ $collection->add(
       'id'          =>false,
       "params"      =>false,
       "_format"=>"html"
-    ],
-    ["params"=>".+"])
-);
+    ]
+));
 
 
 return $collection;
