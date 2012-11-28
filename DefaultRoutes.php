@@ -20,11 +20,21 @@ $collection->add(
       [])
 );
 $collection->add(
-  'default_action_id_params', 
+  'default_action_id', 
   new Route('/{action}/{id}.{_format}', 
     [ 'controller'  => __NAMESPACE__.'\Controller\PageController', 
       'action'      =>"index",
       'id'          =>false,
+      "_format"=>"html"
+    ],
+      [])
+);
+
+$collection->add(
+  'default_action', 
+  new Route('/{action}.{_format}', 
+    [ 'controller'  => __NAMESPACE__.'\Controller\PageController', 
+      'action'      =>"index",
       "_format"=>"html"
     ],
       [])
