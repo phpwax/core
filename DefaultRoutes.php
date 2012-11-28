@@ -38,7 +38,7 @@ $collection->add(
       "params"      =>false,
       "_format"=>"html"
     ],
-      [])
+      ["params"=>"[^\.]+"])
 );
 
 
