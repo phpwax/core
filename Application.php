@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\Routing;
+use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\FileLoader;
 use Symfony\Component\Routing\Loader\PhpFileLoader;
@@ -57,10 +58,10 @@ class Application {
   public function boot() {
     if (true === $this->booted) return;
     
-    // Load Routes
-    $loader = new PhpFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
-    $routeCollection = $loader->load('routes.php');
-    $this->router = $routeCollection;
+    // Setup Routes
+    $this->router = new RouteCollection;
+    
+
 
     // init bundles
     $this->initialize_bundles();
@@ -157,6 +158,9 @@ class Application {
       $request = Request::createFromGlobals();
       $this->request = $request;
       
+      // Load in the default routes
+      $loader = new PhpFileLoader(new FileLocator(array(__DIR__)));
+      $this->router->addCollection($loader->load('DefaultRoutes.php'));
       
             
       $context = new Routing\RequestContext();
