@@ -17,7 +17,7 @@ $collection->add(
       "params"      =>false,
       "_format"=>"html"
     ],
-      ["params"=>"\w\-+","id"=>"\w\-+","action"=>"\w\-+" ])
+      ["params"=>"\w+","id"=>"\w+","action"=>"\w+" ])
 );
 
 
