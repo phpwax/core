@@ -63,14 +63,17 @@ class Application {
     // Setup Routes
     $this->router = new RouteCollection;
     $locator = new FileLocator([$this->get_root_dir().'/config/']);
-    $loader = new PhpFileLoader($locator);
     
-    print_r($locator->locate('routes.yml')); exit;
+    try {
+      $loader = new PhpFileLoader($locator);
+      $this->router->addCollection($loader->load('routes.php'));
     
-    if($locator->locate('routes.php')) $this->router->addCollection($loader->load('routes.php'));
+      $loader = new YamlFileLoader($locator);
+      $this->router->addCollection($loader->load('routes.yml'));
+    } catch (\InvalidArgumentException $e) {
+      
+    }
     
-    $loader = new YamlFileLoader($locator);
-    if($locator->locate('routes.yml')) $this->router->addCollection($loader->load('routes.yml'));
     
     
 
