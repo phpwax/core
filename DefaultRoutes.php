@@ -10,12 +10,12 @@ $collection->add(
 
 $collection->add(
   'default_action_id_params', 
-  new Route('/{action}/{id}/{params}.{format}', 
+  new Route('/{action}/{id}/{params}.{_format}', 
     [ 'controller'  => __NAMESPACE__.'\Controller\PageController', 
       'action'      =>"index",
       'id'          =>false,
       "params"      =>false,
-      "format"=>"html"
+      "_format"=>"html"
     ],
     ["params"=>".+"])
 );
