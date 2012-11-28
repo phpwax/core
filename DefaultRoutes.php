@@ -9,16 +9,15 @@ $collection->add(
 );
 
 $collection->add(
-  'default_action_id_params', 
-  new Route('/{action}/{id}/{params}.{_format}', 
+  'default_action', 
+  new Route('/{action}.{_format}', 
     [ 'controller'  => __NAMESPACE__.'\Controller\PageController', 
       'action'      =>"index",
-      'id'          =>false,
-      "params"      =>false,
       "_format"=>"html"
     ],
       [])
 );
+
 $collection->add(
   'default_action_id', 
   new Route('/{action}/{id}.{_format}', 
@@ -31,14 +30,19 @@ $collection->add(
 );
 
 $collection->add(
-  'default_action', 
-  new Route('/{action}.{_format}', 
+  'default_action_id_params', 
+  new Route('/{action}/{id}/{params}.{_format}', 
     [ 'controller'  => __NAMESPACE__.'\Controller\PageController', 
       'action'      =>"index",
+      'id'          =>false,
+      "params"      =>false,
       "_format"=>"html"
     ],
       [])
 );
+
+
+
 
 
 return $collection;
