@@ -64,6 +64,9 @@ class Application {
     $this->router = new RouteCollection;
     $locator = new FileLocator([$this->get_root_dir().'/config/']);
     $loader = new PhpFileLoader($locator);
+    
+    print_r($locator->locate('routes.yml')); exit;
+    
     if($locator->locate('routes.php')) $this->router->addCollection($loader->load('routes.php'));
     
     $loader = new YamlFileLoader($locator);
