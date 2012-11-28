@@ -62,11 +62,12 @@ class Application {
     
     // Setup Routes
     $this->router = new RouteCollection;
-    $loader = new PhpFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
-    if($loader->locate('routes.php')) $this->router->addCollection($loader->load('routes.php'));
+    $locator = new FileLocator([$this->get_root_dir().'/config/']);
+    $loader = new PhpFileLoader($locator);
+    if($locator->locate('routes.php')) $this->router->addCollection($loader->load('routes.php'));
     
-    $loader = new YamlFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
-    if($loader->locate('routes.yml')) $this->router->addCollection($loader->load('routes.yml'));
+    $loader = new YamlFileLoader($locator);
+    if($locator->locate('routes.yml')) $this->router->addCollection($loader->load('routes.yml'));
     
     
 
