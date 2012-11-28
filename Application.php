@@ -9,6 +9,8 @@ use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\FileLoader;
 use Symfony\Component\Routing\Loader\PhpFileLoader;
+use Symfony\Component\Routing\Loader\YamlFileLoader;
+
   
 class Application {
 
@@ -63,7 +65,7 @@ class Application {
     $loader = new PhpFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
     $this->router->addCollection($loader->load('routes.php'));
     
-    $loader = new YAMLFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
+    $loader = new YamlFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
     $this->router->addCollection($loader->load('routes.yml'));
 
 
