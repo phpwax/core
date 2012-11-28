@@ -62,11 +62,16 @@ class Application {
     
     // Setup Routes
     $this->router = new RouteCollection;
-    $loader = new PhpFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
-    $this->router->addCollection($loader->load('routes.php'));
+    try {
+      $loader = new PhpFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
+      $this->router->addCollection($loader->load('routes.php'));
     
-    $loader = new YamlFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
-    $this->router->addCollection($loader->load('routes.yml'));
+      $loader = new YamlFileLoader(new FileLocator(array($this->get_root_dir().'/config/')));
+      $this->router->addCollection($loader->load('routes.yml'));
+    } catch (Exception $e) {
+      
+    }
+    
 
 
     // init bundles
