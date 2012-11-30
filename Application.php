@@ -52,6 +52,11 @@ class Application {
     return $this->name;
   }
   
+  public function get_root_namespace() {
+    $r = new \ReflectionObject($this);
+    return $r->getNamespaceName();
+  }
+  
   /**
   * Boots the current kernel.
   *
@@ -197,13 +202,16 @@ class Application {
     * Returns response.
     *
     * @param string $attributes 
-    * @return void
-    * @author Ross Riley
+    * @return $response
     */
    public function dispatch($attributes) {
- 	  $delegate = $attributes["controller"];
-    $controller = new $delegate($this);
-    return $response;
+     $controller = new ControllerResolver($attributes);
+     print_r($controller); exit;
+     
+ 	  //$delegate = $attributes["controller"];
+    //$main_namespace = $this->get_root_namespace();
+    $controller = new $main_namespace."\\".$delegate($this);
+    
    }
     
     
