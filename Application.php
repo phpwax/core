@@ -27,6 +27,7 @@ class Application {
   protected $startTime;
   protected $classes;
   protected $errorReportingLevel;
+  public $default_controller = false;
   
 
   public function __construct($environment, $debug) {
@@ -181,6 +182,17 @@ class Application {
       
       // Load in the default routes
       $loader = new PhpFileLoader(new FileLocator(array(__DIR__)));
+      $default_collection = $loader->load('DefaultRoutes.php');
+      
+      // Map the default controller to the current namespace
+      if($this->default_controller) $default = $this->default_controller;
+      else $default = $this->get_root_namespace()."\\Controller\PageController"; 
+      foreach($default_collection as &$route) {
+        if($route->getOption("controller")=="__DEFAULT__") {
+          $route->setOption("controller",$default);
+        }
+      }
+      
       $this->router->addCollection($loader->load('DefaultRoutes.php'));
       
             
@@ -206,11 +218,9 @@ class Application {
     * @return $response
     */
    public function dispatch($attributes) {
-     
- 	  $delegate = $attributes["controller"];
-    $main_namespace = $this->get_root_namespace();
-    $controller = new $main_namespace."\\".$delegate($this);
-    print_r($controller); exit;
+
+
+    print_r($attributes); exit;
    }
     
     
