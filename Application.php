@@ -207,7 +207,7 @@ class Application {
     */
    public function dispatch($attributes) {
      $resolver = new ControllerResolver();
-     print_r($controller->getController($attributes)); exit;
+     print_r($resolver->getController($attributes)); exit;
      
  	  //$delegate = $attributes["controller"];
     //$main_namespace = $this->get_root_namespace();
