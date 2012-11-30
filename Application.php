@@ -181,20 +181,14 @@ class Application {
       $this->request = $request;
       
       // Load in the default routes
+      $default = $this->default_controller ?:$this->get_root_namespace()."\\Controller\PageController";
+      
       $loader = new PhpFileLoader(new FileLocator(array(__DIR__)));
-      $default_collection = $loader->load('DefaultRoutes.php');
+      $loader->default_controler = $default;
       
-      // Map the default controller to the current namespace
-      if($this->default_controller) $default = $this->default_controller;
-      else $default = $this->get_root_namespace()."\\Controller\PageController"; 
-      die($default);
-      foreach($default_collection as &$route) {
-        if($route->getOption("controller")=="__DEFAULT__") {
-          $route->setOption("controller",$default);
-        }
-      }
+      $this->router->addCollection($loader->load('DefaultRoutes.php'));
       
-      $this->router->addCollection($default_collection);
+      
       
             
       $context = new Routing\RequestContext();
