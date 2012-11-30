@@ -213,9 +213,8 @@ class Application {
     * @return $response
     */
    public function dispatch($attributes) {
-
-
-    print_r($attributes); exit;
+     $delegate = new $attributes["controller"];
+     return $delegate->render();
    }
     
     
