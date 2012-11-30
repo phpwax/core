@@ -187,6 +187,7 @@ class Application {
       // Map the default controller to the current namespace
       if($this->default_controller) $default = $this->default_controller;
       else $default = $this->get_root_namespace()."\\Controller\PageController"; 
+      die($default);
       foreach($default_collection as &$route) {
         if($route->getOption("controller")=="__DEFAULT__") {
           $route->setOption("controller",$default);
