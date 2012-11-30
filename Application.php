@@ -206,13 +206,11 @@ class Application {
     * @return $response
     */
    public function dispatch($attributes) {
-     $resolver = new ControllerResolver();
-     print_r($resolver->getController($attributes)); exit;
      
- 	  //$delegate = $attributes["controller"];
-    //$main_namespace = $this->get_root_namespace();
+ 	  $delegate = $attributes["controller"];
+    $main_namespace = $this->get_root_namespace();
     $controller = new $main_namespace."\\".$delegate($this);
-    
+    print_r($controller); exit;
    }
     
     
