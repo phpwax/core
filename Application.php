@@ -193,7 +193,7 @@ class Application {
         }
       }
       
-      $this->router->addCollection($loader->load('DefaultRoutes.php'));
+      $this->router->addCollection($default_collection);
       
             
       $context = new Routing\RequestContext();
