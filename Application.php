@@ -201,7 +201,7 @@ class Application {
     * @author Ross Riley
     */
    public function dispatch($attributes) {
- 	  $delegate = new $attributes->controller;
+ 	  $delegate = $attributes["controller"];
     $controller = new $delegate($this);
     return $response;
    }
