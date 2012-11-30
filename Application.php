@@ -182,12 +182,28 @@ class Application {
       $context->fromRequest($request);
       $matcher = new Routing\Matcher\UrlMatcher($this->router, $context);
       $attributes = $matcher->match($request->getPathInfo());
-      print_r($attributes); exit;
+      $response = $this->dispatch($attributes);
+      
+      
      } catch (\Exception $e) {
        $response = new Response('A fatal error occurred: ' . $e->getMessage(), 500);
      }
    
      return $response;
+   }
+   
+   /**
+    * Uses the routed controller and action
+    * Returns response.
+    *
+    * @param string $attributes 
+    * @return void
+    * @author Ross Riley
+    */
+   public function dispatch($attributes) {
+ 	  $delegate = new $attributes->controller;
+    $controller = new $delegate($this);
+    return $response;
    }
     
     
