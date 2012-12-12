@@ -4,7 +4,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\HttpKernel\HttpKernel;
-use Symfony\Component\HttpKernel\Controller\ControllerResolver;
 use Symfony\Component\Routing;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Config\FileLocator;
@@ -213,7 +212,7 @@ class Application {
     * @return $response
     */
    public function dispatch($attributes) {
-     $delegate = new $attributes["controller"];
+     $delegate = new $attributes["controller"]($attributes);
      return $delegate->render();
    }
     
