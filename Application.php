@@ -78,7 +78,7 @@ class Application {
       $this->router->addCollection($loader->load('routes.yml'));
       
       $this->config = $loader->load('config_'.$this->get_environment().'.yml');
-      
+      print_r($this->config); exit;
       
     } catch (\InvalidArgumentException $e) {
       
