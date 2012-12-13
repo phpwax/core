@@ -77,7 +77,7 @@ class Application {
       $loader = new YamlFileLoader($locator);
       $this->router->addCollection($loader->load('routes.yml'));
       
-      $this->config = $loader->load('config_'.$this->getEnvironment().'.yml');
+      $this->config = $loader->load('config_'.$this->get_environment().'.yml');
       
       
     } catch (\InvalidArgumentException $e) {
