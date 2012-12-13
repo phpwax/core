@@ -76,6 +76,10 @@ class Application {
     
       $loader = new YamlFileLoader($locator);
       $this->router->addCollection($loader->load('routes.yml'));
+      
+      $this->config = $loader->load('config_'.$this->getEnvironment().'.yml');
+      
+      
     } catch (\InvalidArgumentException $e) {
       
     }
@@ -167,6 +171,10 @@ class Application {
     return [];
   }
   
+  public function get_environment() {
+    return $this->environment;
+  }
+  
   
   /**
   * {@inheritdoc}
@@ -186,7 +194,6 @@ class Application {
       $loader->default_controler = $default;
       
       $this->router->addCollection($loader->load('DefaultRoutes.php'));
-      
       
       
             
