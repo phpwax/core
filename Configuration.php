@@ -19,7 +19,7 @@ class Configuration {
     return $this->get("config_".$env);
   }
   
-  public function add_config($config, $as) {
+  public function add_config($config, $as = false) {
     if($as) $this->config[$as] = $config;
     else $this->config = $config;
   }
