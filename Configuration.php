@@ -1,6 +1,8 @@
 <?php
 namespace Wax\Core;
 use Wax\Core\Parser\INI;
+use Symfony\Component\Yaml\Yaml as Yaml;
+
 
 
 class Configuration {
