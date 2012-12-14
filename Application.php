@@ -10,6 +10,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\FileLoader;
 use Symfony\Component\Routing\Loader\PhpFileLoader;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
+use Symfony\Component\Yaml\Parser as YamlParser;
 
   
 class Application {
@@ -81,8 +82,12 @@ class Application {
     } catch (\InvalidArgumentException $e) {
       
     }
-    $this->config = $loader->load('config_'.$this->get_environment().'.yml');
-    print_r($this->config); exit; 
+    try {
+      $this->config = new Configuration;
+      $this->config->add_resource($this->get_root_dir().'/config/');
+    } catch (\Exception $e) {
+      
+    }
 
 
     // init bundles
