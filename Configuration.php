@@ -20,7 +20,6 @@ class Configuration {
   }
   
   public function add_resource($resource) {
-    echo $resource;
     if(is_dir($resource)) $this->add_directory($resource);
 	  if(substr($resource, -3)=="yml") {
       $parse = Yaml::parse($resource);
@@ -44,7 +43,7 @@ class Configuration {
   protected function add_directory($directory) {
     $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directory),\RecursiveIteratorIterator::CHILD_FIRST);
     foreach($iterator as $resource) {
-      $this->add_resource($resource->getPathName());
+      if(!$resource->isDot()) $this->add_resource($resource->getPathName());
     }
   }
   
