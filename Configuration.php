@@ -20,6 +20,7 @@ class Configuration {
   }
   
   public function add_resource($resource) {
+    echo $resource;
     if(is_dir($resource)) $this->add_directory($resource);
 	  if(substr($resource, -3)=="yml") {
       $parse = Yaml::parse($resource);
