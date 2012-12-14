@@ -221,7 +221,7 @@ class Application {
     * @return $response
     */
    public function dispatch($attributes) {
-     $delegate = new $attributes["controller"]($attributes);
+     $delegate = new $attributes["controller"]($attributes, $this);
      return $delegate->render();
    }
     
