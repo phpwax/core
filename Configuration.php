@@ -41,7 +41,7 @@ class Configuration {
   protected function add_directory($directory) {
     $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directory),\RecursiveIteratorIterator::CHILD_FIRST);
     foreach($iterator as $resource) {
-      $this->add_resource($resource);
+      $this->add_resource($resource->getPathName());
     }
   }
   
