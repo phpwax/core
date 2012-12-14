@@ -82,6 +82,9 @@ class Application {
     } catch (\InvalidArgumentException $e) {
       
     }
+    
+    // Load configuration
+    
     try {
       $this->config = new Configuration;
       $this->config->add_resource($this->get_root_dir().'/config/');
