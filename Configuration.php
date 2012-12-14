@@ -21,7 +21,7 @@ class Configuration {
   
   public function add_config($config, $as = false) {
     if($as) $this->config[$as] = $config;
-    else $this->config = $config;
+    else $this->config += $config;
   }
   
   public function add_resource($resource) {
