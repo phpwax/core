@@ -15,8 +15,13 @@ class Configuration {
     elseif($result = $this->get_by_key($key)) return $result;
   }
   
+  public function get_environment($env) {
+    return $this->get("config_".$env);
+  }
+  
   public function add_config($config, $as) {
-    $this->config[$as] = $config;
+    if($as) $this->config[$as] = $config;
+    else $this->config = $config;
   }
   
   public function add_resource($resource) {

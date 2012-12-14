@@ -88,6 +88,7 @@ class Application {
     try {
       $this->config = new Configuration;
       $this->config->add_resource($this->get_root_dir().'/config/');
+      $this->config->add_config($this->config["config_".$this->get_environment()]);
     } catch (\Exception $e) {
       
     }
