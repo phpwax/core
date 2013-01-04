@@ -47,6 +47,8 @@ class Application {
     return $this->rootdir;
   }
   
+
+  
   public function get_name() {
     if (null === $this->name) {
       $this->name = preg_replace('/[^a-zA-Z0-9_]+/', '', basename($this->rootdir));
@@ -230,7 +232,9 @@ class Application {
    }
     
     
-
+   public function terminate() {
+     
+   }
 
 }
 
